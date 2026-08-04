@@ -1,0 +1,26 @@
+﻿# dependencies / build
+node_modules/
+.next/
+.vercel/
+dist/
+build/
+out/
+.turbo/
+
+# secrets â€” never publish
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# python
+venv/
+__pycache__/
+*.pyc
+
+# misc
+*.log
+.DS_Store
+Thumbs.db
+.thumbnail
