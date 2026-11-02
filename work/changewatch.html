@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChangeWatch — case study — Mohd Aariz Amaan</title>
+<meta name="description" content="Case study: ChangeWatch, an open-source release monitor and AI SRE by Mohd Aariz Amaan. How it works, what was measured, and the decisions behind it.">
+<meta property="og:title" content="ChangeWatch — case study — Mohd Aariz Amaan">
+<meta property="og:description" content="Case study: ChangeWatch, an open-source release monitor and AI SRE by Mohd Aariz Amaan. How it works, what was measured, and the decisions behind it.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aariz-me.vercel.app/work/changewatch">
+<link rel="canonical" href="https://aariz-me.vercel.app/work/changewatch">
+<meta name="theme-color" content="#0E0D0B">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&amp;family=Inter:wght@400;500;600&amp;family=Newsreader:ital,opsz@1,6..72&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-in">
+    <a class="brand" href="/"><span class="mk" aria-hidden="true">A</span> Aariz Amaan</a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="/projects" aria-current="page">Projects</a>
+      <a href="/experience">Experience</a>
+      <a href="/about">About</a>
+      <a class="nav-cta" href="/about#contact">Get in touch</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="main">
+<section class="page-head" style="padding-bottom:0;">
+  <div class="wrap">
+    <span class="crumb"><a href="/projects">Projects</a> / ChangeWatch</span>
+    <h1>ChangeWatch</h1>
+    <p class="lede">A self-hosted release monitor and AI SRE. It tells a small team within seconds when a deploy breaks production, then explains why.</p>
+    <dl class="cs-meta"><div><dt>Role</dt><dd>Solo: design to release</dd></div><div><dt>Year</dt><dd>2026</dd></div><div><dt>Stack</dt><dd>Python, FastAPI, PostgreSQL, Redis, Next.js, Docker</dd></div><div><dt>Links</dt><dd><a href="https://github.com/aarizbobbydeol/changewatch" target="_blank" rel="noopener noreferrer">Code</a>, <a href="https://github.com/aarizbobbydeol/changewatch/releases/tag/v1.0.1" target="_blank" rel="noopener noreferrer">v1.0.1</a>, <a href="https://pypi.org/project/changewatcher/" target="_blank" rel="noopener noreferrer">PyPI</a></dd></div></dl>
+    <figure><div class="cs-figure light"><img src="/img/changewatch-alert.svg" alt="A ChangeWatch alert in Slack: a possible regression at app/billing.py line 42, with an AI investigation reply in the thread." width="760" height="470"></div><figcaption class="cs-caption">An example alert in Slack: the failing line, whether it changed in this deploy, and the explanation in the thread.</figcaption></figure>
+  </div>
+</section>
+
+<article class="sec" style="padding-top:24px;">
+  <div class="wrap">
+    <section class="cs-body">
+      <h2>The problem</h2>
+      <div><p>Small Python teams often can't tell quickly whether a deploy caused new errors. Full monitoring suites cost money and send code and error data to someone else's servers.</p><p>ChangeWatch runs on the team's own server. It watches errors and traffic after every deploy, alerts within seconds when something new breaks, and gives each release a verdict, naming the likely file, line and owner.</p></div>
+    </section>
+    <section class="cs-body">
+      <h2>How it works</h2>
+      <div><ol class="steps"><li><div><b>Deploy</b>A GitHub Action sends the commit, a size-capped diff with secret files left out, and the CODEOWNERS file. It only reads the repo, and it never fails the pipeline.</div></li><li><div><b>Observe</b>A dependency-free Python SDK reports exceptions, slow requests and request counts. It strips secrets and emails before anything leaves the app.</div></li><li><div><b>Store</b>Events go onto a Redis queue. A worker writes each batch to Postgres in one transaction: duplicates removed, errors grouped into issues, stack traces encrypted.</div></li><li><div><b>Alert</b>A new error seen three or more times within a minute of a deploy opens an incident. The alert is saved in the same transaction and sent to Slack, Discord, Teams, email or a webhook within about a second.</div></li><li><div><b>Explain</b>The investigator gathers the diff near the failing line, the failed requests and similar past incidents, asks Claude or a local Ollama model for the likely cause, and checks the answer against that evidence.</div></li><li><div><b>Verdict</b>Fixed rules compare error rates before and after the deploy and give a verdict at 10 minutes and again at 30: safe, watch, rollback, or no data.</div></li></ol></div>
+    </section>
+    <section class="cs-body">
+      <h2>Results</h2>
+      <div><div class="nums"><div><b>595</b><span>tests passing at v1.0.1, against real Postgres and Redis</span></div><div><b>329</b><span>API contract checks across every endpoint and key type, 0 failures</span></div><div><b>0</b><span>events lost in the end-to-end pipeline test (31 of 31 accepted, resends not double-counted)</span></div><div><b>13/13</b><span>security and read-only checks passing</span></div><div><b>12/12</b><span>regression scenarios for the triage rules and answer checks</span></div><div><b>0.009 ms</b><span>added latency from the SDK at p95</span></div></div><p class="source">From the GitHub Actions run for the v1.0.1 commit. <a href="https://github.com/aarizbobbydeol/changewatch/actions/runs/40380634003" target="_blank" rel="noopener noreferrer" style="color:var(--amber)">See the run</a>.</p></div>
+    </section>
+    <section class="cs-body">
+      <h2>Decisions I made</h2>
+      <div><ul class="dec"><li>Rules decide the verdict, not the AI. The model only explains the cause, and AI budgets can pause explanations but never verdicts or alerts.</li><li>Each alert is written to an outbox in the same database transaction as its incident, so a worker crash or a Slack outage can't lose an alert or send it twice.</li><li>It never writes to a team's code. The one exception is an opt-in draft pull request that undoes a deploy, and CI scans the code to keep it that way.</li><li>Each project gets a separate manage key, so the read key that sits in dashboards and AI tools can't mute alerts or raise the AI budget.</li></ul></div>
+    </section>
+    <section class="cs-body">
+      <h2>Released</h2>
+      <div><p>v1.0.1 ships as multi-architecture Docker images and as the <a href="https://pypi.org/project/changewatcher/" target="_blank" rel="noopener noreferrer" style="color:var(--amber)">changewatcher</a> package on PyPI. A one-command installer sets up HTTPS, fresh secrets and a first project, and CI tests it on new Ubuntu servers (Intel and ARM) on every change.</p></div>
+    </section>
+    <nav class="next-cs" aria-label="More projects">
+      <a href="/projects"><small>Back to</small><strong>All projects</strong></a>
+      <a href="/work/rag-assistant" style="text-align:right;"><small>Next case study</small><strong>RAG Knowledge Assistant</strong></a>
+    </nav>
+  </div>
+</article>
+
+<section class="cta-band">
+  <div class="wrap">
+    <span class="note">Say hello</span>
+    <h2 class="h2">Let's talk about a role, a project, or an idea.</h2>
+    <p class="lede">I'm open to applied-AI, engineering and growth roles, and to freelance builds. Email is the fastest way to reach me.</p>
+    <div class="contact-links">
+      <a class="btn btn-fill" href="mailto:mdaarizamaan195@gmail.com">Email me</a>
+      <a class="btn" href="https://linkedin.com/in/aariz-amaan" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a class="btn" href="https://github.com/aarizbobbydeol" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap ftr-in">
+    <span>&copy; <span id="yr">2026</span> Mohd Aariz Amaan, Hyderabad. Built by me.</span>
+    <nav aria-label="Elsewhere">
+      <a href="mailto:mdaarizamaan195@gmail.com">Email</a>
+      <a href="https://github.com/aarizbobbydeol" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://linkedin.com/in/aariz-amaan" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </nav>
+  </div>
+</footer>
+<script src="/js/main.js" defer></script>
+</body>
+</html>

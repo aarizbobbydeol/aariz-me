@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Mohd Aariz Amaan</title>
+<meta name="description" content="Fifteen public projects by Mohd Aariz Amaan: ChangeWatch, a RAG assistant, an LLM evaluation platform, client websites and more, each with its code.">
+<meta property="og:title" content="Projects — Mohd Aariz Amaan">
+<meta property="og:description" content="Fifteen public projects by Mohd Aariz Amaan: ChangeWatch, a RAG assistant, an LLM evaluation platform, client websites and more, each with its code.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aariz-me.vercel.app/projects">
+<link rel="canonical" href="https://aariz-me.vercel.app/projects">
+<meta name="theme-color" content="#0E0D0B">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&amp;family=Inter:wght@400;500;600&amp;family=Newsreader:ital,opsz@1,6..72&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-in">
+    <a class="brand" href="/"><span class="mk" aria-hidden="true">A</span> Aariz Amaan</a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="/projects" aria-current="page">Projects</a>
+      <a href="/experience">Experience</a>
+      <a href="/about">About</a>
+      <a class="nav-cta" href="/about#contact">Get in touch</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="main">
+<section class="page-head">
+  <div class="wrap">
+    <h1>Everything I've built, with the code.</h1>
+    <p class="lede">Fifteen public repositories, from an open-source AI SRE to client websites. On a computer, projects with a live site show a preview when you point at them. The first three have a full case study.</p>
+  </div>
+</section>
+
+<section class="sec" id="projects" aria-label="Projects" style="padding-top:0;">
+  <div class="wrap">
+    <div class="filters" role="group" aria-label="Show projects">
+      <button type="button" data-filter="all" aria-pressed="true">All<span class="n"></span></button>
+      <button type="button" data-filter="ai" aria-pressed="false">AI &amp; data<span class="n"></span></button>
+      <button type="button" data-filter="web" aria-pressed="false">Websites<span class="n"></span></button>
+      <button type="button" data-filter="app" aria-pressed="false">Apps &amp; games<span class="n"></span></button>
+    </div>
+    <p class="sr-only" id="filter-status" aria-live="polite"></p>
+    <div class="proj-list">
+      <article class="proj" data-cat="ai">
+        <h3>ChangeWatch<small>Open source, v1.0.1</small></h3>
+        <div><p class="desc">Self-hosted release monitor: alerts within seconds when a deploy breaks production, names the file, line and owner, and gives a verdict at 10 and 30 minutes.</p><p class="stack">Python, FastAPI, PostgreSQL, Redis, Next.js, Docker</p></div>
+        <div class="links"><a class="case" href="/work/changewatch">Case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a href="https://github.com/aarizbobbydeol/changewatch" target="_blank" rel="noopener noreferrer">Code <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a><a href="https://pypi.org/project/changewatcher/" target="_blank" rel="noopener noreferrer">PyPI <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
+      </article>
+      <article class="proj" data-cat="ai" data-shot="/img/shots/rag-assistant.jpg">
+        <h3>RAG Knowledge Assistant<small>Live demo</small></h3>
+        <div><p class="desc">Answers questions about your documents with citations to the exact page, and refuses when the fact isn't there. Hybrid BM25 and vector search, 632 tests.</p><p class="stack">Python, FastAPI, React, TypeScript, Docker</p></div>
+        <div class="links"><a class="case" href="/work/rag-assistant">Case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="live" href="https://rag-assistant-ezje.onrender.com" target="_blank" rel="noopener noreferrer">Live demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a><a href="https://github.com/aarizbobbydeol/rag-assistant" target="_blank" rel="noopener noreferrer">Code <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
+      </article>
+      <article class="proj" data-cat="ai">
+        <h3>AutoEval AI<small>In progress</small></h3>
+        <div><p class="desc">Runs one set of test prompts across Claude, GPT and Gemini, scores the answers automatically, and puts quality, speed and token use side by side.</p><p class="stack">Next.js, React, TypeScript, Vercel AI SDK, Recharts</p></div>
+        <div class="links"><a class="case" href="/work/autoeval-ai">Case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a href="https://github.com/aarizbobbydeol/autoeval-ai" target="_blank" rel="noopener noreferrer">Code <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
+      </article>
+      <article class="proj" data-cat="ai" data-shot="/img/shots/forest-nation-demo.jpg">
+        <h3>Forest Nation WhatsApp chatbot<small>Live demo</small></h3>
+        <div><p class="desc">A WhatsApp-style property chatbot you can click through, with the n8n bot logic and the email and WhatsApp drip campaigns behind it.</p><p class="stack">JavaScript, n8n, WhatsApp Cloud API</p></div>
+        <div class="links"><a class="live" href="https://forest-nation-demo.vercel.app" target="_blank" rel="noopener noreferrer">Live demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
+      </article>
+      <article class="proj" data-cat="ai">
+        <h3>Smart Traffic Signal Analysis<small>Experiment</small></h3>
+        <div><p class="desc">Counts cars, bikes, buses and trucks in traffic video with YOLOv8, sampling a frame every two seconds, and suggests a signal colour from the count.</p><p class="stack">Python, YOLOv8, OpenCV, Gradio</p></div>
+        <div class="links"><a href="https://github.com/aarizbobbydeol/smart-traffic-management" target="_blank" rel="noopener noreferrer">Code <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
+      </article>
+      <article class="proj" data-cat="ai">
+        <h3>Retail Insight<small>Experiment</small></h3>
+        <div><p class="desc">Streamlit dashboard that forecasts daily sales per product with XGBoost and tracks inventory and wastage, built on generated store data.</p><p class="stack">Python, Streamlit, pandas, XGBoost, scikit-learn, Plotly</p></div>
+        <div class="links"><a href="https://github.com/aarizbobbydeol/invecto" target="_blank" rel="noopener noreferrer">Code <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
+      </article>
+      <article class="proj" data-cat="web" data-shot="/img/shots/manidweepa-kshethram.jpg">
+        <h3>Manidweepa Kshethram<small>Live, WordPress</small></h3>
+        <div><p class="desc">Donor website for a temple megaproject: a journey timeline, donation tiers and an updates page. The design went live as the WordPress site at manidweepam.org.</p><p class="stack">HTML, CSS, JavaScript, WordPress</p></div>
+        <div class="links"><a class="live" href="https://manidweepam.org" target="_blank" rel="noopener noreferrer">manidweepam.org <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a><a href="https://github.com/aarizbobbydeol/manidweepa-kshethram" target="_blank" rel="noopener noreferrer">Code <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
+      </article>
+      <article class="proj" data-cat="web" data-shot="/img/shots/thara-infra.jpg">
+        <h3>Thara Infra<small>Website</small></h3>
+        <div><p class="desc">Five-page site for a Hyderabad real-estate marketing firm, with 13 project listings and downloadable brochures.</p><p class="stack">HTML, CSS, JavaScript</p></div>
+        <div class="links"><a class="live" href="https://thara-infra-psi.vercel.app" target="_blank" rel="noopener noreferrer">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a><a href="https://github.com/aarizbobbydeol/thara-infra" target="_blank" rel="noopener noreferrer">Code <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
+      </article>
+      <article class="proj" data-cat="web" data-shot="/img/shots/vay-bharat.jpg">
+        <h3>Vay Bharat<small>Website</small></h3>
+        <div><p class="desc">Landing site for a senior-living service, with a hand-drawn SVG scene animated in CSS and its own icon set.</p><p class="stack">Next.js, React, TypeScript, Tailwind CSS</p></div>
+        <div class="links"><a class="live" href="https://vay-bharat.vercel.app" target="_blank" rel="noopener noreferrer">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a><a href="https://github.com/aarizbobbydeol/vay-bharat" target="_blank" rel="noopener noreferrer">Code <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
+      </article>
+      <article class="proj" data-cat="web" data-shot="/img/shots/mangue-estate.jpg">
+        <h3>Mangue Estate<small>Website</small></h3>
+        <div><p class="desc">Eight-page site for a mango-orchard farmhouse venue near Hyderabad: stays, weddings, events, packages and enquiries.</p><p class="stack">HTML, CSS, JavaScript</p></div>
+        <div class="links"><a class="live" href="https://mangue-estate-final.vercel.app" target="_blank" rel="noopener noreferrer">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a><a href="https://github.com/aarizbobbydeol/mangue-estate" target="_blank" rel="noopener noreferrer">Code <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
+      </article>
+      <article class="proj" data-cat="web" data-shot="/img/shots/terrawoods-realty.jpg">
+        <h3>TerraWoods Realty<small>Website</small></h3>
+        <div><p class="desc">Marketing site and blog for a land developer: 13 pages, six articles, and an enquiry form that opens a ready-written email.</p><p class="stack">HTML, CSS, JavaScript</p></div>
+        <div class="links"><a class="live" href="https://site-seven-phi-64.vercel.app" target="_blank" rel="noopener noreferrer">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a><a href="https://github.com/aarizbobbydeol/terrawoods-realty" target="_blank" rel="noopener noreferrer">Code <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
+      </article>
+      <article class="proj" data-cat="web" data-shot="/img/shots/ridgeline.jpg">
+        <h3>Ridgeline<small>Website</small></h3>
+        <div><p class="desc">Editorial site for Himalayan motorcycle expeditions, with an altitude meter that climbs as you scroll and a hand-drawn elevation profile.</p><p class="stack">Next.js, React, TypeScript, Tailwind CSS, Framer Motion</p></div>
+        <div class="links"><a class="live" href="https://ridgeline-alpha.vercel.app" target="_blank" rel="noopener noreferrer">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a><a href="https://github.com/aarizbobbydeol/ridgeline" target="_blank" rel="noopener noreferrer">Code <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
+      </article>
+      <article class="proj" data-cat="web">
+        <h3>Pathless<small>Website</small></h3>
+        <div><p class="desc">One-page site for an expedition brand, with a parallax hero and a two-question quiz that picks one of nine routes.</p><p class="stack">Next.js, React, TypeScript, Tailwind CSS, Motion</p></div>
+        <div class="links"><a class="live" href="https://pathless-theta.vercel.app" target="_blank" rel="noopener noreferrer">Visit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a><a href="https://github.com/aarizbobbydeol/pathless" target="_blank" rel="noopener noreferrer">Code <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
+      </article>
+      <article class="proj" data-cat="app">
+        <h3>StockPro<small>App</small></h3>
+        <div><p class="desc">Shop dashboard for stock levels, sales checkout, staff attendance and sales charts. Products at their reorder point show in red.</p><p class="stack">Next.js, React, TypeScript, Tailwind CSS, Recharts</p></div>
+        <div class="links"><a href="https://github.com/aarizbobbydeol/Stock-Management" target="_blank" rel="noopener noreferrer">Code <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
+      </article>
+      <article class="proj" data-cat="app">
+        <h3>Mind Rush<small>Game</small></h3>
+        <div><p class="desc">Brain-training game in a single HTML file: eight timed mini-games picked at random, with streaks and combos.</p><p class="stack">HTML, CSS, JavaScript</p></div>
+        <div class="links"><a href="https://github.com/aarizbobbydeol/mind-rush" target="_blank" rel="noopener noreferrer">Code <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
+      </article>
+    </div>
+
+    <div class="other">
+      <span class="note">No public code</span>
+      <h2 class="h2">Work that lives elsewhere.</h2>
+      <p class="lede" style="margin-bottom:36px;">Client and employer work on other people's domains or in private repositories.</p>
+      <div class="proj-list">
+      <article class="proj">
+        <h3>Forest Nation website<small>Employer, live</small></h3>
+        <div><p class="desc">33-page property website. My SEO work took it to #1 on Google for “Villa Gated Community Hyderabad”.</p><p class="stack">WordPress, SEO</p></div>
+        <div class="links"><a class="live" href="https://forestnation.in" target="_blank" rel="noopener noreferrer">forestnation.in <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
+      </article>
+      <article class="proj">
+        <h3>A-PAS<small>Client</small></h3>
+        <div><p class="desc">Agency website, plus document and image automation pipelines.</p><p class="stack">Web, automation</p></div>
+        <div class="links"></div>
+      </article>
+      <article class="proj">
+        <h3>Real-Time Detection &amp; Tracking<small>Experiment</small></h3>
+        <div><p class="desc">Multi-object detection and frame-to-frame tracking across video, for live monitoring.</p><p class="stack">YOLOv8, Hugging Face</p></div>
+        <div class="links"></div>
+      </article>
+      <article class="proj">
+        <h3>Inventory Intelligence<small>Project</small></h3>
+        <div><p class="desc">Dashboards for sales, stock, margins and wastage that flag slow-moving stock early.</p><p class="stack">React, Node.js, MongoDB</p></div>
+        <div class="links"></div>
+      </article>
+      <article class="proj">
+        <h3>FN Midtown market intelligence<small>Employer</small></h3>
+        <div><p class="desc">Market research, competitor benchmarking and catchment analysis that fed investor decks.</p><p class="stack">Research, analysis</p></div>
+        <div class="links"></div>
+      </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="peek" aria-hidden="true"><img alt="" width="800" height="500" decoding="async"></div>
+
+<section class="cta-band">
+  <div class="wrap">
+    <span class="note">Say hello</span>
+    <h2 class="h2">Let's talk about a role, a project, or an idea.</h2>
+    <p class="lede">I'm open to applied-AI, engineering and growth roles, and to freelance builds. Email is the fastest way to reach me.</p>
+    <div class="contact-links">
+      <a class="btn btn-fill" href="mailto:mdaarizamaan195@gmail.com">Email me</a>
+      <a class="btn" href="https://linkedin.com/in/aariz-amaan" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a class="btn" href="https://github.com/aarizbobbydeol" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap ftr-in">
+    <span>&copy; <span id="yr">2026</span> Mohd Aariz Amaan, Hyderabad. Built by me.</span>
+    <nav aria-label="Elsewhere">
+      <a href="mailto:mdaarizamaan195@gmail.com">Email</a>
+      <a href="https://github.com/aarizbobbydeol" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://linkedin.com/in/aariz-amaan" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </nav>
+  </div>
+</footer>
+<script src="/js/main.js" defer></script>
+</body>
+</html>

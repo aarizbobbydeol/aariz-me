@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAG Knowledge Assistant — case study — Mohd Aariz Amaan</title>
+<meta name="description" content="Case study: a RAG assistant by Mohd Aariz Amaan that cites the exact page and refuses when the fact is missing. How it works and how it was measured.">
+<meta property="og:title" content="RAG Knowledge Assistant — case study — Mohd Aariz Amaan">
+<meta property="og:description" content="Case study: a RAG assistant by Mohd Aariz Amaan that cites the exact page and refuses when the fact is missing. How it works and how it was measured.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aariz-me.vercel.app/work/rag-assistant">
+<link rel="canonical" href="https://aariz-me.vercel.app/work/rag-assistant">
+<meta name="theme-color" content="#0E0D0B">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&amp;family=Inter:wght@400;500;600&amp;family=Newsreader:ital,opsz@1,6..72&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-in">
+    <a class="brand" href="/"><span class="mk" aria-hidden="true">A</span> Aariz Amaan</a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="/projects" aria-current="page">Projects</a>
+      <a href="/experience">Experience</a>
+      <a href="/about">About</a>
+      <a class="nav-cta" href="/about#contact">Get in touch</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="main">
+<section class="page-head" style="padding-bottom:0;">
+  <div class="wrap">
+    <span class="crumb"><a href="/projects">Projects</a> / RAG Knowledge Assistant</span>
+    <h1>RAG Knowledge Assistant</h1>
+    <p class="lede">Document question answering with citations to the exact page, which refuses when the fact you asked about isn't in the documents.</p>
+    <dl class="cs-meta"><div><dt>Role</dt><dd>Solo: design to deploy</dd></div><div><dt>Year</dt><dd>2026</dd></div><div><dt>Stack</dt><dd>Python, FastAPI, React, TypeScript, BM25 and vector search, Docker</dd></div><div><dt>Links</dt><dd><a href="https://rag-assistant-ezje.onrender.com" target="_blank" rel="noopener noreferrer">Live demo</a> (wakes in about 30 s), <a href="https://github.com/aarizbobbydeol/rag-assistant" target="_blank" rel="noopener noreferrer">Code</a></dd></div></dl>
+    <figure><div class="cs-figure"><img src="/img/shots/rag-assistant.jpg" alt="The RAG Assistant demo: a conversations list, a documents panel for dropping files to index, and suggested questions about a refund policy." width="800" height="500"></div><figcaption class="cs-caption">The live demo on Render. It runs with no API key, answering by quoting the passages it found.</figcaption></figure>
+  </div>
+</section>
+
+<article class="sec" style="padding-top:24px;">
+  <div class="wrap">
+    <section class="cs-body">
+      <h2>The problem</h2>
+      <div><p>People who need answers from their own PDFs and internal documents can't trust a chatbot that answers fluently even when the documents never state the fact.</p><p>This assistant answers with numbered citations back to the exact passage and page, and refuses when the specific fact is missing, naming the term it looked for and the document it searched.</p></div>
+    </section>
+    <section class="cs-body">
+      <h2>How it works</h2>
+      <div><ol class="steps"><li><div><b>Load and chunk</b>Reads PDF, Markdown, HTML, text, JSON and CSV, and splits it into overlapping chunks that keep their page numbers so a citation can point at a page.</div></li><li><div><b>Index twice</b>Each chunk goes into a vector store and a BM25 keyword index, written together so recall never quietly drops.</div></li><li><div><b>Retrieve</b>Follow-up questions are rewritten to stand alone. Keyword and vector results are fused, diversified and reranked, and the top five passages are kept.</div></li><li><div><b>Check before answering</b>If a key term of the question, like “SEV-4”, isn't actually in the passages, it refuses and says which term was missing. No LLM call is needed for this.</div></li><li><div><b>Answer</b>By default it quotes passages with no API key at all, or it uses any OpenAI-compatible model when a key is set. Every sentence must carry a citation.</div></li><li><div><b>Verify</b>Citations the model invented are removed and the rest renumbered, then each sentence is scored against the passage it cites.</div></li></ol></div>
+    </section>
+    <section class="cs-body">
+      <h2>Results</h2>
+      <div><div class="nums"><div><b>0.994</b><span>recall@5 on 58 answerable questions</span></div><div><b>0.924</b><span>nDCG@5 (MRR 0.915)</span></div><div><b>8 of 8</b><span>unanswerable questions refused</span></div><div><b>1 of 58</b><span>answerable questions refused by mistake</span></div><div><b>632</b><span>tests passing on Python 3.11 and 3.12</span></div><div><b>+0.039</b><span>nDCG gained from reranking</span></div></div><p class="source">From the CI evaluation gate on a 66-question test set, which fails the build if these numbers get worse. <a href="https://github.com/aarizbobbydeol/rag-assistant/actions/runs/34688996975" target="_blank" rel="noopener noreferrer" style="color:var(--amber)">See the run</a>.</p><p style="margin-top:22px;">On a harder set of 60 held-out questions, the refusal check cut the share of unanswerable questions it answered anyway from 77% to 57%. That's better, not solved, and it's the number I'm working on.</p></div>
+    </section>
+    <section class="cs-body">
+      <h2>Decisions I made</h2>
+      <div><ul class="dec"><li>Retrieval written by hand instead of with LangChain, so fusion, diversity, reranking and the grounding check are each small, visible and tested on their own.</li><li>Works with no API key by default, so anyone can reproduce every number offline, and the public demo has nothing to leak or run up.</li><li>Swapped score thresholds for per-term checks after finding that pooled scores rated unanswerable questions as fully covered.</li><li>Pinned the CI gate at the measured numbers, so a change that makes refusals worse fails the build instead of just printing a lower score.</li></ul></div>
+    </section>
+    <nav class="next-cs" aria-label="More projects">
+      <a href="/projects"><small>Back to</small><strong>All projects</strong></a>
+      <a href="/work/autoeval-ai" style="text-align:right;"><small>Next case study</small><strong>AutoEval AI</strong></a>
+    </nav>
+  </div>
+</article>
+
+<section class="cta-band">
+  <div class="wrap">
+    <span class="note">Say hello</span>
+    <h2 class="h2">Let's talk about a role, a project, or an idea.</h2>
+    <p class="lede">I'm open to applied-AI, engineering and growth roles, and to freelance builds. Email is the fastest way to reach me.</p>
+    <div class="contact-links">
+      <a class="btn btn-fill" href="mailto:mdaarizamaan195@gmail.com">Email me</a>
+      <a class="btn" href="https://linkedin.com/in/aariz-amaan" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a class="btn" href="https://github.com/aarizbobbydeol" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap ftr-in">
+    <span>&copy; <span id="yr">2026</span> Mohd Aariz Amaan, Hyderabad. Built by me.</span>
+    <nav aria-label="Elsewhere">
+      <a href="mailto:mdaarizamaan195@gmail.com">Email</a>
+      <a href="https://github.com/aarizbobbydeol" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://linkedin.com/in/aariz-amaan" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </nav>
+  </div>
+</footer>
+<script src="/js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AutoEval AI — case study — Mohd Aariz Amaan</title>
+<meta name="description" content="Case study: AutoEval AI by Mohd Aariz Amaan, a platform for comparing Claude, GPT and Gemini on the same prompts. How it works and where it stands.">
+<meta property="og:title" content="AutoEval AI — case study — Mohd Aariz Amaan">
+<meta property="og:description" content="Case study: AutoEval AI by Mohd Aariz Amaan, a platform for comparing Claude, GPT and Gemini on the same prompts. How it works and where it stands.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aariz-me.vercel.app/work/autoeval-ai">
+<link rel="canonical" href="https://aariz-me.vercel.app/work/autoeval-ai">
+<meta name="theme-color" content="#0E0D0B">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&amp;family=Inter:wght@400;500;600&amp;family=Newsreader:ital,opsz@1,6..72&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-in">
+    <a class="brand" href="/"><span class="mk" aria-hidden="true">A</span> Aariz Amaan</a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="/projects" aria-current="page">Projects</a>
+      <a href="/experience">Experience</a>
+      <a href="/about">About</a>
+      <a class="nav-cta" href="/about#contact">Get in touch</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="main">
+<section class="page-head" style="padding-bottom:0;">
+  <div class="wrap">
+    <span class="crumb"><a href="/projects">Projects</a> / AutoEval AI</span>
+    <h1>AutoEval AI</h1>
+    <p class="lede">A web app that runs the same prompts across several LLMs, scores the answers, and compares quality, speed and token use.</p>
+    <dl class="cs-meta"><div><dt>Role</dt><dd>Solo</dd></div><div><dt>Year</dt><dd>2026</dd></div><div><dt>Stack</dt><dd>Next.js, React, TypeScript, Vercel AI SDK, Recharts, Tailwind CSS</dd></div><div><dt>Links</dt><dd><a href="https://github.com/aarizbobbydeol/autoeval-ai" target="_blank" rel="noopener noreferrer">Code</a></dd></div></dl>
+    
+  </div>
+</section>
+
+<article class="sec" style="padding-top:24px;">
+  <div class="wrap">
+    <section class="cs-body">
+      <h2>The problem</h2>
+      <div><p>Comparing LLMs by hand is slow and inconsistent: you paste the same prompt into each model and judge the answers by eye.</p><p>AutoEval AI is for a developer choosing between Claude, GPT and Gemini. It runs one saved set of test prompts against several models, scores every answer automatically, and puts quality, speed and token use side by side.</p></div>
+    </section>
+    <section class="cs-body">
+      <h2>How it works</h2>
+      <div><ol class="steps"><li><div><b>Build a test set</b>Create a named set of prompts, each with an optional expected answer. Six starter sets with 30 test cases cover maths, logic, code, facts, summaries and following instructions.</div></li><li><div><b>Set up a run</b>Pick a test set, one or more models (four presets or any model the gateway supports), and a scoring method.</div></li><li><div><b>Call each model</b>Every prompt goes to every model at temperature 0 through one gateway, recording latency and input and output tokens. A failed call is kept with its error.</div></li><li><div><b>Score each answer</b>Exact match, word overlap, or an LLM judge: Claude Haiku 4.5 returns a score from 0 to 1 with a short reason.</div></li><li><div><b>Compare</b>The results page shows each model's average score, average latency and total tokens, with charts and every answer alongside the judge's reasoning.</div></li></ol></div>
+    </section>
+    <section class="cs-body">
+      <h2>What it measures</h2>
+      <div><div class="nums"><div><b>0–1</b><span>quality score for every answer</span></div><div><b>ms</b><span>latency of every model call</span></div><div><b>tokens</b><span>input and output, per call and per model</span></div><div><b>4</b><span>preset models: Claude Sonnet 4.6, Claude Haiku 4.5, GPT-5.4, Gemini 3 Flash</span></div></div><p class="source">From the code in the repository.</p><p style="margin-top:22px;">Where it stands: the app runs end to end, but there's no published benchmark run yet, and the rubric scorer still reuses the judge. Next: a first public run across all four models, and tests.</p></div>
+    </section>
+    <section class="cs-body">
+      <h2>Decisions I made</h2>
+      <div><ul class="dec"><li>One gateway for every provider, so a single key covers Claude, GPT and Gemini, and a new model is just a name to type in.</li><li>Temperature 0 for both the model being tested and the judge, so repeated runs give comparable scores.</li><li>Plain JSON files instead of a database, so it runs locally with no setup. The trade-off: it won't keep data on serverless hosting.</li><li>If the judge's reply can't be read, the answer gets a neutral 0.5 instead of crashing the whole run.</li></ul></div>
+    </section>
+    <nav class="next-cs" aria-label="More projects">
+      <a href="/projects"><small>Back to</small><strong>All projects</strong></a>
+      <a href="/work/changewatch" style="text-align:right;"><small>Next case study</small><strong>ChangeWatch</strong></a>
+    </nav>
+  </div>
+</article>
+
+<section class="cta-band">
+  <div class="wrap">
+    <span class="note">Say hello</span>
+    <h2 class="h2">Let's talk about a role, a project, or an idea.</h2>
+    <p class="lede">I'm open to applied-AI, engineering and growth roles, and to freelance builds. Email is the fastest way to reach me.</p>
+    <div class="contact-links">
+      <a class="btn btn-fill" href="mailto:mdaarizamaan195@gmail.com">Email me</a>
+      <a class="btn" href="https://linkedin.com/in/aariz-amaan" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a class="btn" href="https://github.com/aarizbobbydeol" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap ftr-in">
+    <span>&copy; <span id="yr">2026</span> Mohd Aariz Amaan, Hyderabad. Built by me.</span>
+    <nav aria-label="Elsewhere">
+      <a href="mailto:mdaarizamaan195@gmail.com">Email</a>
+      <a href="https://github.com/aarizbobbydeol" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://linkedin.com/in/aariz-amaan" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </nav>
+  </div>
+</footer>
+<script src="/js/main.js" defer></script>
+</body>
+</html>
