@@ -5,7 +5,7 @@ My personal portfolio - who I am, what I have built, what I am building, and whe
 **Live:** https://aariz-me.vercel.app
 
 ## About
-Final-year B.Tech (Data Science & AI) student working at the meeting point of AI technology and finance. I build things end to end - AI systems, production websites, and the growth behind them.
+B.Tech (Data Science & AI) graduate working at the meeting point of AI technology and finance. I build things end to end - AI systems, production websites, and the growth behind them.
 
 ## Tech
 Hand-written HTML5, CSS3 and vanilla JavaScript. No framework, no build step. Fraunces + Inter + Newsreader type, dark editorial theme, deployed on Vercel.
