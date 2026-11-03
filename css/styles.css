@@ -334,3 +334,6 @@ body.nav-open .burger span:nth-child(3) { transform: translateY(-8px) rotate(-45
 figure { margin: 0; }
 .feat-row { color: inherit; }
 .feat-row:focus-visible { outline-offset: -2px; }
+
+/* tools and languages used in a role */
+.tl-item .tools-used { margin-top: 12px; font-size: .84rem; color: var(--ink-3); }
