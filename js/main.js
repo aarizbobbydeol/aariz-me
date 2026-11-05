@@ -286,3 +286,31 @@
     });
   }
 })();
+
+/* ChangeWatch case study: step-through replay of the recorded run (tabs, arrow keys) */
+(function () {
+  "use strict";
+  document.querySelectorAll("[data-replay]").forEach(function (root) {
+    var tabs = Array.prototype.slice.call(root.querySelectorAll('[role="tab"]'));
+    function show(i, focus) {
+      tabs.forEach(function (t, k) {
+        var on = k === i;
+        t.setAttribute("aria-selected", on ? "true" : "false");
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+      });
+      if (focus) tabs[i].focus();
+    }
+    tabs.forEach(function (t, i) {
+      t.addEventListener("click", function () { show(i, false); });
+      t.addEventListener("keydown", function (e) {
+        var n = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
+        if (e.key === "Home") n = -i; else if (e.key === "End") n = tabs.length - 1 - i;
+        if (n === undefined) return;
+        e.preventDefault();
+        show((i + n + tabs.length) % tabs.length, true);
+      });
+    });
+    show(0, false);
+  });
+})();
